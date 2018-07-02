@@ -11,6 +11,7 @@ for ((i=0; i < 180; i++)); do
     printf "…"${i}
 done &
 #downloand cromwell
+printf "Download cromwell "${cromwell_version}
 wget -q http://github.com/broadinstitute/cromwell/releases/download/${cromwell_version}/cromwell-${cromwell_version}.jar
 #excute wdl script
 java -Dconfig.file=travis/resources/google-sac.conf -Dbackend.providers.JES.config.project=broad-dsde-outreach -Dbackend.providers.JES.config.root=gs://beri-test/gatk-workflows-travis-tests/ -jar cromwell-${cromwell_version}.jar run ${wdl} -i ${json};
